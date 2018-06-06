@@ -1,13 +1,21 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.javajokes.JavaJokes;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.example.androidjoke.JokeActivity;
 
 
 /**
@@ -32,5 +40,24 @@ public class MainActivityFragment extends Fragment {
                 .build();
         mAdView.loadAd(adRequest);
         return root;
+
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button tellJoke = view.findViewById(R.id.tellJoke);
+
+        tellJoke.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity().getApplicationContext(), JavaJokes.getJoke(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), JokeActivity.class);
+                intent.putExtra( "joke_key", JavaJokes.getJoke());
+                startActivity(intent);
+            }
+        });
     }
 }

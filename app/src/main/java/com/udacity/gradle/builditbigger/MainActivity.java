@@ -8,11 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import com.example.javajokes.javaJokes;
+import com.example.javajokes.JavaJokes;
 
 
 public class MainActivity extends AppCompatActivity {
-    javaJokes javaJokes = new javaJokes();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void tellJoke(View view) {
-        Toast.makeText(this, javaJokes.getJoke(), Toast.LENGTH_SHORT).show();
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//    public void tellJoke(View view) {
+//        Toast.makeText(this, JavaJokes.getJoke(), Toast.LENGTH_SHORT).show();
+//    }
 
 
 }

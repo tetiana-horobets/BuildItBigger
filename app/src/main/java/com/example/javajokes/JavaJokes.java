@@ -4,12 +4,12 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
-public class javaJokes {
+public class JavaJokes {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public String getJoke(){
+    public static String getJoke(){
         ArrayList<String> jokes = new ArrayList<>();
         jokes.add("Dear Santa,\n" +
                 "Please do not leave my gift under the Christmas tree. Drive it straight into the garage.\n" +
@@ -23,8 +23,8 @@ public class javaJokes {
                 "Read more at http://www.funny-jokes-quotes.com/#OCP4zLLC8zBgRjiO.99");
         jokes.add("Instagram - it's a place where we need to register our moms, cause only they wonder how we are dressed and what we ate.\n" +
                 "Read more at http://www.funny-jokes-quotes.com/#OCP4zLLC8zBgRjiO.99");
-        int randomNum = ThreadLocalRandom.current().nextInt(0, 4 + 1);
-
+        Random random = new Random();
+        int randomNum = random.nextInt(jokes.size());
         return jokes.get(randomNum);
     }
 }
