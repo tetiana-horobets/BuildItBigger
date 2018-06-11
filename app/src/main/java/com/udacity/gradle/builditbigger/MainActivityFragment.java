@@ -1,26 +1,24 @@
 package com.udacity.gradle.builditbigger;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.javajokes.JavaJokes;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.example.androidjoke.JokeActivity;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
@@ -54,9 +52,14 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity().getApplicationContext(), JavaJokes.getJoke(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), JokeActivity.class);
-                intent.putExtra( "joke_key", JavaJokes.getJoke());
-                startActivity(intent);
+                @SuppressLint("StaticFieldLeak") EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(){
+                    protected void onPostExecute(String result){
+                        Intent intent = new Intent(getContext(), JokeActivity.class);
+                        intent.putExtra( "joke_key", result);
+                        startActivity(intent);
+                    }
+                };
+                endpointsAsyncTask.execute(new Pair<Context, String>(getContext(), ""));
             }
         });
     }
