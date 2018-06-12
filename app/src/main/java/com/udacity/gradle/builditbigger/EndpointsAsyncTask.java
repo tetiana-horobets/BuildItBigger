@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Pair;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private static MyApi myApiService = null;
+    @SuppressLint("StaticFieldLeak")
     private Context context;
 
     @Override
@@ -38,7 +40,6 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
         }
 
         context = params[0].first;
-        String jokes = params[0].second;
 
         try {
             return myApiService.getJoke().execute().getData();
