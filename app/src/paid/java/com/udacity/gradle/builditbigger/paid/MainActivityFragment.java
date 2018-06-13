@@ -38,7 +38,6 @@ public class MainActivityFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getActivity().getApplicationContext(), JavaJokes.getJoke(), Toast.LENGTH_SHORT).show();
                 @SuppressLint("StaticFieldLeak") EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(){
                     protected void onPostExecute(String result){
                         Intent intent = new Intent(getContext(), JokeActivity.class);

@@ -49,7 +49,6 @@ public class MainActivityFragment extends Fragment {
         Button tellJoke = view.findViewById(R.id.tellJoke);
 
         tellJoke.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 @SuppressLint("StaticFieldLeak") EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(){
